@@ -89,7 +89,6 @@ deps:
 	@git config --global http.https://gopkg.in.followRedirects true
 
 	@echo "$(OK_COLOR)==> Installing glide dependencies$(NO_COLOR)"
-	@go get -u github.com/Masterminds/glide
 	@glide install
 
 deps-dev:
