@@ -1,4 +1,6 @@
 [![codecov](https://codecov.io/gh/gregbiv/news-api/branch/master/graph/badge.svg)](https://codecov.io/gh/gregbiv/news-api)
+[![Build Status](https://travis-ci.org/gregbiv/news-api.svg?branch=master)](https://travis-ci.org/gregbiv/news-api)
+[![Go Report Card](https://goreportcard.com/badge/github.com/gregbiv/news-api)](https://goreportcard.com/report/github.com/gregbiv/news-api)
 
 REST api for [News-Today](https://github.com/gregbiv/news-today).
 
