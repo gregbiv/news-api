@@ -4,6 +4,15 @@
 
 REST api for [News-Today](https://github.com/gregbiv/news-today).
 
+- [Maintainers](#maintainers)
+- [API Docs](#api-docs)
+- [Development Environment](#development-environment)
+	- [pre-commit](#pre-commit)
+		- [Pre-commit error: Files were modified by this hook](#pre-commit-error-files-were-modified-by-this-hook)
+- [Database Migrations](#database-migrations)
+- [Test Suites](#test-suites)
+	- [Unit tests (testing the code)](#unit-tests-testing-the-code)
+
 ## Maintainers
 
 * Gregory Kornienko [@gregbiv](https://github.com/gregbiv)
