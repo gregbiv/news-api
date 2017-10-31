@@ -4,6 +4,8 @@
 
 REST api for [News-Today](https://github.com/gregbiv/news-today).
 
+<a id="table-of-contents" href="#table-of-contents">Table of contents</a>
+
 - [Maintainers](#maintainers)
 - [API Docs](#api-docs)
 - [Development Environment](#development-environment)
