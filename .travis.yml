@@ -9,10 +9,9 @@ go:
 install:
   - mkdir -p $GOPATH/bin
   - go get -u github.com/go-playground/overalls
+  - go get -u github.com/Masterminds/glide
   - go get -u github.com/jteeuwen/go-bindata/go-bindata
-  -	go get -u github.com/Masterminds/glide
   - make deps
-  - make build-assets
 
 script:
 - make test
