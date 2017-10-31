@@ -6,9 +6,6 @@ services:
 go:
   - 1.x
 
-before_install:
-  - docker-compose -f ./docker-compose.yml up -d
-
 install:
   - mkdir -p $GOPATH/bin
   - go get github.com/go-playground/overalls
