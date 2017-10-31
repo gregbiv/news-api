@@ -1,0 +1,40 @@
+version: '3'
+services:
+
+  # Menu Addons Service
+  #---------------------------------------------------------------------------------------------------------------------
+  # HTTP API instance
+  http-api:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - .:/go/src/github.com/gregbiv/news-api
+    environment:
+      DEBUG: 'true'
+      LOG_LEVEL: 'debug'
+      PORT: 80
+      MAS_COMMAND: 'http'
+      DATABASE_DSN: 'postgres://news-api:news4you@postgres/news-api?sslmode=disable&client_encoding=UTF8'
+      DATABASE_VERSION: 1
+      MIGRATION_DIR: 'resources/migrations'
+      STATS_DSN: 'log://'
+      STATS_PREFIX: 'news-api'
+    expose:
+      - '80'
+    ports:
+    - '8090:80'
+    depends_on:
+      - postgres
+
+  # Postgres Database
+  # --------------------------------------------------------------------------------------------------------------------
+  postgres:
+    image: postgres:9.6
+    ports:
+    - '8041:5432'
+    environment:
+      LC_ALL: C.UTF-8
+      POSTGRES_DB: news-api
+      POSTGRES_USER: news-api
+      POSTGRES_PASSWORD: news4you
