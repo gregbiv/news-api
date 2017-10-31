@@ -1,0 +1,9 @@
+vendor/
+build/
+cmd/debug
+pkg/*/debug.test
+resources/docs/api.html
+*.coverprofile
+
+# Ignore generated resources
+pkg/assets/docs/bindata.go

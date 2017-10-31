@@ -1,0 +1,27 @@
+# See http://pre-commit.com/
+- repo: git://github.com/dnephin/pre-commit-golang
+  sha: v0.2
+  hooks:
+  - id: go-fmt
+  - id: go-vet
+
+- repo: local
+  hooks:
+  - id: go-lint
+    name: Go lint
+    description: Runs `golint`, requires https://github.com/golang/lint
+    language: system
+    entry: 'docker-compose run --rm -T http-api ./resources/dev/go-lint.sh'
+    files: '(?<!\.pb)\.go$'
+  - id: go-imports
+    name: Go import
+    description: Runs `goimports -w`, requires golang.org/x/tools/cmd/goimports
+    language: system
+    entry: 'docker-compose run --rm -T http-api ./resources/dev/go-imports.sh'
+    files: \.go$
+  - id: tocenize
+    name: Tocenize
+    description: Generates table of contents for README.md
+    language: system
+    entry: 'docker-compose run --rm -T http-api ./resources/dev/tocenize.sh'
+    files: "README.md"
