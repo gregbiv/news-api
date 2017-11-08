@@ -2,18 +2,18 @@ package command
 
 import (
 	"fmt"
-	"net/http"
-	"strings"
-
 	"github.com/go-chi/chi"
 	chiMiddleware "github.com/go-chi/chi/middleware"
+	"github.com/gregbiv/news-api/pkg/api"
 	"github.com/gregbiv/news-api/pkg/api/docs"
 	"github.com/gregbiv/news-api/pkg/middleware"
+	"github.com/gregbiv/news-api/pkg/routes"
 	"github.com/jmoiron/sqlx"
-	"github.com/opentracing/opentracing-go"
 	"github.com/pressly/lg"
 	"github.com/sirupsen/logrus"
 	log "github.com/sirupsen/logrus"
+	"net/http"
+	"strings"
 )
 
 // HTTPCommand is responsible for running the http server
@@ -31,6 +31,8 @@ func (c *HTTPCommand) Run(args []string) int {
 
 	router := chi.NewRouter()
 
+	urlExtractor := api.NewURLExtractor()
+
 	// Setup handler dependencies
 	db, err := sqlx.Open("postgres", c.Config.Database.PostgresDB.DSN)
 	if err != nil {
@@ -42,7 +44,6 @@ func (c *HTTPCommand) Run(args []string) int {
 
 	// A good base middleware stack
 	router.Use(
-		middleware.OpenTracing(opentracing.GlobalTracer()),
 		chiMiddleware.WithValue(middleware.DatabaseConnection, db),
 		chiMiddleware.WithValue("app.config", c.Config),
 		chiMiddleware.Recoverer,
@@ -61,6 +62,7 @@ func (c *HTTPCommand) Run(args []string) int {
 
 	// Version 1
 	router.Route("/v1", func(r chi.Router) {
+		r.Route("/category", routes.RouteCategory(urlExtractor, db))
 	})
 
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", c.Config.Port), router))

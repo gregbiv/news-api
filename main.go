@@ -8,8 +8,6 @@ import (
 	"github.com/gregbiv/news-api/pkg/config"
 	"github.com/mattes/migrate/database"
 	"github.com/mitchellh/cli"
-	"github.com/opentracing/basictracer-go"
-	"github.com/opentracing/opentracing-go"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -35,25 +33,6 @@ func main() {
 	if conf.Debug {
 		log.Debugf("Initialized with config: %+v", conf)
 	}
-
-	// Opentracing
-	recorder := basictracer.SpanRecorder(new(config.NoopRecorder))
-	if conf.Tracing.IsValid() {
-		log.Debug("Using Google cloud recorder")
-		recorder, err = conf.Tracing.NewRecorder(log.StandardLogger())
-		if err != nil {
-			log.Fatal(err)
-		}
-	}
-
-	opentracing.InitGlobalTracer(
-		basictracer.NewWithOptions(basictracer.Options{
-			ShouldSample:   func(traceID uint64) bool { return false },
-			MaxLogsPerSpan: 100,
-			Recorder:       recorder,
-		}),
-	)
-	log.Debug("Initialized opentracing")
 
 	db, err := database.Open(conf.Database.PostgresDB.DSN)
 	if err != nil {

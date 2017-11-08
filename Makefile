@@ -14,10 +14,10 @@ ifneq ("$(wildcard .env)","")
 	export $(shell sed 's/=.*//' .env)
 endif
 
-SRC_DIRS=cmd pkg
+SRC_DIRS=pkg
 
 BINARY=news-api
-BINARY_SRC=$(REPO)/cmd/${NAME}
+BINARY_SRC=$(REPO)
 
 GO_LINKER_FLAGS=-ldflags="-s -w"
 
@@ -93,6 +93,9 @@ deps:
 	@glide install
 
 deps-dev:
+	@printf "$(OK_COLOR)==> Installing Godog$(NO_COLOR)\n"
+	@go get -u github.com/DATA-DOG/godog/cmd/godog
+
 	@printf "$(OK_COLOR)==> Installing Go-bindata$(NO_COLOR)\n"
 	@go get -u github.com/jteeuwen/go-bindata/go-bindata
 

@@ -15,7 +15,6 @@ type Specification struct {
 			DSN string `envconfig:"DATABASE_DSN"`
 		}
 	}
-	Tracing GoogleCloudTracing
 }
 
 // Migration config

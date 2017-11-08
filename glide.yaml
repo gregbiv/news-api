@@ -30,20 +30,14 @@ import:
   # Errors
   - package: github.com/palantir/stacktrace
     version: master
-  # OpenTracing
-  - package: github.com/opentracing/opentracing-go
-    version: ~1.0.2
-  - package: github.com/opentracing/basictracer-go
-    version: master
-  - package: github.com/hellofresh/gcloud-opentracing
-    version: ^1.0.0
-  - package: golang.org/x/oauth2
-    version: master
+  # Testing
+  - package: github.com/DATA-DOG/godog
+    version: ^0.7.3
     subpackages:
-    - jwt
-    - google
-  - package: google.golang.org/api
-    version: master
+    - cmd/godog
+  - package: github.com/onsi/gomega
+    version: ^1.2.0
+  - package: github.com/stretchr/testify
+    version: ~1.1.4
     subpackages:
-    - support/bundler
-    - cloudtrace/v1
+    - assert

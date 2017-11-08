@@ -1,30 +1,22 @@
-hash: f72d4e8da8b788a26907990b8bc56b6668fe80c5194d9e0ca2ea869ae83295b9
-updated: 2017-10-31T18:08:24.51733553+01:00
+hash: 4cd766f448412838765c8d2c32b314afc2d1e880d720390444340e32ad6e8c1d
+updated: 2017-11-08T22:36:06.956936391+01:00
 imports:
-- name: cloud.google.com/go
-  version: 0e612a0b0a084cb07d254b51471a39c17a6c70b3
-  subpackages:
-  - compute/metadata
 - name: github.com/armon/go-radix
   version: 4239b77079c7b5d1243b7b4736304ce8ddb6f0f2
 - name: github.com/bgentry/speakeasy
   version: 4aabc24848ce5fd31929f7d1e4ea74d3709c14cd
+- name: github.com/DATA-DOG/godog
+  version: 4dc98b0e2b130c3c9d06868a050320e5b310d3e7
+  subpackages:
+  - cmd/godog
+  - colors
+  - gherkin
 - name: github.com/go-chi/chi
   version: f7c66f685bcab06bcce78ac212c5f3553c063d19
   subpackages:
   - middleware
 - name: github.com/go-chi/render
   version: 7bbdb19f4016118d23bc31d6d33dc1dd517c6b2e
-- name: github.com/gogo/protobuf
-  version: 0c5dcd73e6fd1ac6c452a68ec7f8d463d111be66
-  subpackages:
-  - proto
-- name: github.com/golang/protobuf
-  version: 130e6b02ab059e7b717a096f397c5b60111cae74
-  subpackages:
-  - proto
-- name: github.com/hellofresh/gcloud-opentracing
-  version: e2d92e40aa5e2f406dd67ef999673e73272e8c68
 - name: github.com/jmoiron/sqlx
   version: 3379e5993990b1f927fc8db926485e6f6becf2d2
   subpackages:
@@ -50,15 +42,20 @@ imports:
   version: b481eac70eea3ad671b7c360a013f89bb759b252
 - name: github.com/mitchellh/colorstring
   version: 8631ce90f28644f54aeedcb3e389a85174e067d1
-- name: github.com/opentracing/basictracer-go
-  version: 1b32af207119a14b1b231d451df3ed04a72efebf
+- name: github.com/onsi/gomega
+  version: c893efa28eb45626cdaa76c9f653b62488858837
   subpackages:
-  - wire
-- name: github.com/opentracing/opentracing-go
-  version: 1949ddbfd147afd4d964a9f00b24eb291e0e7c38
-  subpackages:
-  - ext
-  - log
+  - format
+  - internal/assertion
+  - internal/asyncassertion
+  - internal/oraclematcher
+  - internal/testingtsupport
+  - matchers
+  - matchers/support/goraph/bipartitegraph
+  - matchers/support/goraph/edge
+  - matchers/support/goraph/node
+  - matchers/support/goraph/util
+  - types
 - name: github.com/palantir/stacktrace
   version: 78658fd2d1772b755720ed8c44367d11ee5380d6
   subpackages:
@@ -69,6 +66,10 @@ imports:
   version: 879c5887cd475cd7864858769793b2ceb0d44feb
 - name: github.com/sirupsen/logrus
   version: f006c2ac4710855cf0f916dd6b77acf6b048dc6e
+- name: github.com/stretchr/testify
+  version: 69483b4bd14f5845b5a1e55bca19e954e827f1d0
+  subpackages:
+  - assert
 - name: github.com/xeipuuv/gojsonpointer
   version: 6fe8760cad3569743d51ddbb243b26f8456742dc
 - name: github.com/xeipuuv/gojsonreference
@@ -82,44 +83,34 @@ imports:
 - name: golang.org/x/net
   version: 8351a756f30f1297fe94bbf4b767ec589c6ea6d0
   subpackages:
-  - context
-  - context/ctxhttp
-- name: golang.org/x/oauth2
-  version: bb50c06baba3d0c76f9d125c0719093e315b5b44
-  subpackages:
-  - google
-  - internal
-  - jws
-  - jwt
-- name: golang.org/x/sync
-  version: f52d1811a62927559de87708c8913c1650ce4f26
-  subpackages:
-  - semaphore
+  - html
+  - html/atom
+  - html/charset
 - name: golang.org/x/sys
   version: b90f89a1e7a9c1f6b918820b3daa7f08488c8594
   subpackages:
   - unix
   - windows
-- name: google.golang.org/api
-  version: 672d215daf0631fcae4c08c2a4324a763aaaf789
+- name: golang.org/x/text
+  version: 1cbadb444a806fd9430d14ad08967ed91da4fa0a
   subpackages:
-  - cloudtrace/v1
-  - gensupport
-  - googleapi
-  - googleapi/internal/uritemplates
-  - support/bundler
-- name: google.golang.org/appengine
-  version: 24e4144ec923c2374f6b06610c0df16a9222c3d9
-  subpackages:
-  - internal
-  - internal/app_identity
-  - internal/base
-  - internal/datastore
-  - internal/log
-  - internal/modules
-  - internal/remote_api
-  - internal/urlfetch
-  - urlfetch
+  - encoding
+  - encoding/charmap
+  - encoding/htmlindex
+  - encoding/internal
+  - encoding/internal/identifier
+  - encoding/japanese
+  - encoding/korean
+  - encoding/simplifiedchinese
+  - encoding/traditionalchinese
+  - encoding/unicode
+  - internal/tag
+  - internal/utf8internal
+  - language
+  - runes
+  - transform
+- name: gopkg.in/yaml.v2
+  version: eb3733d160e74a9c7e442f435eb3bea458e1d19f
 testImports:
 - name: github.com/davecgh/go-spew
   version: 6d212800a42e8ab5c146b8ace3490ee17e5225f9
@@ -129,7 +120,3 @@ testImports:
   version: d8ed2627bdf02c080bf22230dbb337003b7aba2d
   subpackages:
   - difflib
-- name: github.com/stretchr/testify
-  version: 69483b4bd14f5845b5a1e55bca19e954e827f1d0
-  subpackages:
-  - assert

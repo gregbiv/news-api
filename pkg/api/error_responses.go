@@ -2,10 +2,9 @@ package api
 
 import (
 	"fmt"
-	"net/http"
-
 	"github.com/go-chi/render"
-	log "github.com/sirupsen/logrus"
+	"github.com/gregbiv/news-api/pkg/context"
+	"net/http"
 )
 
 // Render is taking care of rendering the Err
@@ -55,7 +54,7 @@ func RenderErrMissingURIParam(w http.ResponseWriter, r *http.Request, param stri
 
 // RenderInternalServerError is being called when there is an internal server error
 func RenderInternalServerError(w http.ResponseWriter, r *http.Request, err error) {
-	log.Warn(err)
+	context.Logger(r.Context()).Warn(err)
 
 	render.Render(
 		w,
